@@ -47,3 +47,51 @@ tokenized_texts = tokenizer(texts[:1000], truncation=True, padding=True, return_
 # Save tokenized data
 tokenizer.save_pretrained("./tokenized_data")
 ```
+
+<h2> Step 5: Define & Train LLM</h2>
+
+```
+import torch
+from transformers import GPT2Config, GPT2LMHeadModel, Trainer, TrainingArguments
+
+# Define a small GPT model
+config = GPT2Config(
+    vocab_size=30522,
+    n_embd=256,
+    n_layer=4,
+    n_head=4
+)
+model = GPT2LMHeadModel(config)
+model.train()
+
+training_args = TrainingArguments(
+    output_dir="./llm_checkpoints",
+    per_device_train_batch_size=2,
+    num_train_epochs=1,
+    logging_dir="./logs"
+)
+trainer = Trainer(
+    model=model,
+    args=training_args
+)
+trainer.train()
+
+# Save model
+model.save_pretrained("./my_llm")
+```
+
+<h2>Step 6: Generate Text</h2>
+
+```
+from transformers import GPT2LMHeadModel, AutoTokenizer
+
+# Load model and tokenizer
+model = GPT2LMHeadModel.from_pretrained("./my_llm")
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+input_text = "Once upon a time"
+inputs = tokenizer(input_text, return_tensors="pt")
+output = model.generate(**inputs, max_length=50)
+
+print(tokenizer.decode(output[0]))
+```

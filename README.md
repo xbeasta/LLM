@@ -14,8 +14,7 @@
 
 <h2>Step 3: Download Training Data </h2>
 
-from datasets import load_dataset
-
+```from datasets import load_dataset
 # Load Wikipedia dataset
 dataset = load_dataset("wikipedia", "20220301.en", split="train")
 
@@ -23,3 +22,4 @@ dataset = load_dataset("wikipedia", "20220301.en", split="train")
 with open("wikipedia_corpus.txt", "w", encoding="utf-8") as f:
     for article in dataset["text"]:
         f.write(article + "\n")
+```

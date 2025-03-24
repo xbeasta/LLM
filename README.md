@@ -14,7 +14,10 @@
 
 <h2>Step 3: Download Training Data </h2>
 
-```from datasets import load_dataset
+```
+# download_data.py
+
+from datasets import load_dataset
 # Load Wikipedia dataset
 dataset = load_dataset("wikipedia", "20220301.en", split="train")
 
@@ -22,4 +25,24 @@ dataset = load_dataset("wikipedia", "20220301.en", split="train")
 with open("wikipedia_corpus.txt", "w", encoding="utf-8") as f:
     for article in dataset["text"]:
         f.write(article + "\n")
+```
+
+<h2>Step 4: Tokenize Data</h2>
+```
+# tokenize_data.py
+
+from transformers import AutoTokenizer
+
+# Load tokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+# Read corpus
+with open("wikipedia_corpus.txt", "r", encoding="utf-8") as f:
+    texts = f.readlines()
+
+# Tokenize data
+tokenized_texts = tokenizer(texts[:1000], truncation=True, padding=True, return_tensors="pt")
+
+# Save tokenized data
+tokenizer.save_pretrained("./tokenized_data")
 ```

@@ -44,8 +44,11 @@ with open("wikipedia_corpus.txt", "r", encoding="utf-8") as f:
 # Tokenize data
 tokenized_texts = tokenizer(texts[:1000], truncation=True, padding=True, return_tensors="pt")
 
-# Save tokenized data
+# Save tokenize
 tokenizer.save_pretrained("./tokenized_data")
+
+# Save tokenized data
+torch.save(tokenized_texts, "./tokenized_data/tokenized_texts.pt")
 ```
 
 <h2> Step 5: Define & Train LLM</h2>
@@ -65,6 +68,12 @@ config = GPT2Config(
 )
 model = GPT2LMHeadModel(config)
 model.train()
+
+tokenized_texts = torch.load("tokenized_data/tokenized_texts.pt")
+
+# Convert to Hugging Face Dataset
+train_dataset = Dataset.from_dict({"input_ids": tokenized_texts["input_ids"],
+                                   "attention_mask": tokenized_texts["attention_mask"]})
 
 training_args = TrainingArguments(
     output_dir="./llm_checkpoints",

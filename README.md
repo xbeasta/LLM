@@ -27,8 +27,8 @@ with open("wikipedia_corpus.txt", "w", encoding="utf-8") as f:
         f.write(article + "\n")
 ```
 
-<h2>Step 4: Tokenize Data</h2>
 ```
+<h2>Step 4: Tokenize Data</h2>
 # tokenize_data.py
 
 from transformers import AutoTokenizer

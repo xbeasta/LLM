@@ -51,6 +51,8 @@ tokenizer.save_pretrained("./tokenized_data")
 <h2> Step 5: Define & Train LLM</h2>
 
 ```
+# train_model.py
+
 import torch
 from transformers import GPT2Config, GPT2LMHeadModel, Trainer, TrainingArguments
 
@@ -83,6 +85,8 @@ model.save_pretrained("./my_llm")
 <h2>Step 6: Generate Text</h2>
 
 ```
+# generate_text.py
+
 from transformers import GPT2LMHeadModel, AutoTokenizer
 
 # Load model and tokenizer

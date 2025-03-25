@@ -1,4 +1,5 @@
 <h1>Custom LLM</h1>
+<p>Side Note: The code below may be outdated, refer to code in the repo for up-to-date progress.</p>
 
 <h2>Step 1: Set Up Your Environment</h2>
 <p>brew install python</p>

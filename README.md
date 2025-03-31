@@ -109,3 +109,6 @@ output = model.generate(**inputs, max_length=50)
 
 print(tokenizer.decode(output[0]))
 ```
+
+<h2>Step 7: Connecting to AWS</h2>
+<p>ssh -i "badminton_llm_key.pem" ubuntu@ec2-52-14-208-196.us-east-2.compute.amazonaws.com</p>

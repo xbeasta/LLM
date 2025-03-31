@@ -111,4 +111,5 @@ print(tokenizer.decode(output[0]))
 ```
 
 <h2>Step 7: Connecting to AWS</h2>
+<p>chmod 400 "badminton_llm_key.pem"</p>
 <p>ssh -i "badminton_llm_key.pem" ubuntu@ec2-52-14-208-196.us-east-2.compute.amazonaws.com</p>

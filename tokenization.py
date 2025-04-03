@@ -5,6 +5,7 @@ import torch
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "left"
 
 # Read saved text corpus
 with open("human_chat.txt", "r", encoding="utf-8") as f:
